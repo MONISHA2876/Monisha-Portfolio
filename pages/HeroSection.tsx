@@ -97,7 +97,7 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-1 flex-col ">
         <Header />
 
-        <main className="relative bottom-7 flex flex-1 flex-col items-center justify-center px-6 text-center">
+        <main className="relative bottom-10 flex flex-1 flex-col items-center justify-center px-6 text-center">
           <p className="mb-6 text-sm uppercase tracking-[0.4em] text-neutral-400">
             Software Engineer
           </p>
@@ -117,7 +117,7 @@ export default function HeroSection() {
           </div>
 
         </main>
-        
+
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
             <div className="flex flex-col items-center">
                 <span className="mb-3 text-[11px] uppercase tracking-[0.4em] text-neutral-400">
