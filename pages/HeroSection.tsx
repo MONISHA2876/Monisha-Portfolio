@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Header from "@/component/Header";
+import { ArrowDown } from "lucide-react";
 
 const words = [
   "beautiful web experiences.",
@@ -93,10 +94,10 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 flex flex-1 flex-col">
+      <div className="relative z-10 flex flex-1 flex-col ">
         <Header />
 
-        <main className="flex flex-1 flex-col items-center justify-center px-6 text-center">
+        <main className="relative bottom-7 flex flex-1 flex-col items-center justify-center px-6 text-center">
           <p className="mb-6 text-sm uppercase tracking-[0.4em] text-neutral-400">
             Software Engineer
           </p>
@@ -114,7 +115,22 @@ export default function HeroSection() {
               </span>
             </h2>
           </div>
+
         </main>
+        
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+            <div className="flex flex-col items-center">
+                <span className="mb-3 text-[11px] uppercase tracking-[0.4em] text-neutral-400">
+                    Scroll
+                </span>
+
+                <ArrowDown
+                    size={22}
+                    strokeWidth={1.8}
+                    className="text-neutral-400 scroll-indicator"
+                />
+            </div>
+        </div>
       </div>
     </div>
   );

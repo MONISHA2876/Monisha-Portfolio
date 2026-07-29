@@ -37,3 +37,24 @@ body {
 .animate-blink {
   animation: blink 1.5s step-start infinite;
 }
+
+@keyframes scrollIndicator {
+  0% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+}
+
+.scroll-indicator {
+  animation: scrollIndicator 1.8s ease-in-out infinite;
+}
