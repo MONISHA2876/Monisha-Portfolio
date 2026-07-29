@@ -21,11 +21,15 @@ app/
 ├── globals.css
 ├── layout.tsx
 ├── page.tsx
+component/
+├── Header.tsx
 docs/
 ├── animations.md
 ├── architecture.md
 ├── design-system.md
 ├── roadmap.md
+pages/
+├── HeroSection.tsx
 ```
 
 ## Deployment

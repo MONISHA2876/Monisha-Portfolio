@@ -2,8 +2,8 @@
 
 ## Typography
 
-- Primary Font:
-- Secondary Font:
+- Primary Font: Geist
+- Secondary Font: Geist
 
 ## Colors
 

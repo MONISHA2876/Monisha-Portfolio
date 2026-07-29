@@ -9,9 +9,9 @@
 ## Project Setup
 
 - [x] Initialize Next.js 16
-- [ ] Create folder structure
-- [ ] Configure fonts
-- [ ] Configure metadata
+- [x] Create folder structure
+- [x] Configure fonts
+- [x] Configure metadata
 - [ ] Create content layer
 
 ---

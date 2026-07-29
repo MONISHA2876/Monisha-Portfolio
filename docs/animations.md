@@ -2,28 +2,31 @@
 
 ## Hero
 
-- 
+Headline
+
+- Fade Up
+- 0.8s
+
+Typing Text
+
+- Character by character
+- 70ms interval
+
+Background
+
+- Floating blobs
+- Infinite
+- Very slow
+
+Cursor
+
+- Scale slightly on hover
 
 ---
 
-## Navigation
+## Navigation Bar
 
-- 
+Green Dot
 
----
-
-## Project Cards
-
-- 
-
----
-
-## Cursor
-
-- 
-
----
-
-## Page Transition
-
-- 
+- Blinking
+- 1.5s
