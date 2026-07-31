@@ -1,4 +1,5 @@
 import Divider from "@/component/Divider";
+import AboutSection from "@/pages/AboutSection";
 import HeroSection from "@/pages/HeroSection";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <>
     <HeroSection />
     <Divider />
+    <AboutSection />
     </>
   );
 }
