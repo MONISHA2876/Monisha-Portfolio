@@ -1,13 +1,16 @@
 import Divider from "@/component/Divider";
 import AboutSection from "@/pages/AboutSection";
 import HeroSection from "@/pages/HeroSection";
+import Skills from "@/pages/Skills";
+import SmoothScroll from "@/providers/SmoothScroll";
 
 export default function Home() {
   return (
-    <>
-    <HeroSection />
-    <Divider />
-    <AboutSection />
-    </>
+    <SmoothScroll>
+      <HeroSection />
+      <Divider />
+      <AboutSection />
+      <Skills />
+    </SmoothScroll>
   );
 }
