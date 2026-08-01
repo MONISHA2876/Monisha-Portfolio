@@ -89,3 +89,13 @@ body {
   transform-origin: 70% 70%;
   animation: wave 2.5s infinite;
 }
+
+.floating-icon {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.skill-container:hover .floating-icon {
+  animation-play-state: paused !important;
+  transform: scale(1.08) !important;
+}

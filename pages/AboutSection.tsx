@@ -59,15 +59,6 @@ export default function AboutSection() {
                 },
             });
 
-            // looping hand wave
-            if (waveRef.current) {
-                gsap
-                    .timeline({ repeat: -1, repeatDelay: 2.4, delay: 1 })
-                    .to(waveRef.current, { rotate: 18, duration: 0.18, transformOrigin: "70% 70%" })
-                    .to(waveRef.current, { rotate: -12, duration: 0.16 })
-                    .to(waveRef.current, { rotate: 14, duration: 0.16 })
-                    .to(waveRef.current, { rotate: 0, duration: 0.2 });
-            }
         }, containerRef);
 
         return () => ctx.revert();
@@ -90,7 +81,7 @@ export default function AboutSection() {
             <div className="flex">
                 <span ref={textRef} className="text-6xl leading-[1.2] geistMono">
                     <W>
-                        <span ref={waveRef} className="inline-block">🖐🏻</span>
+                        <span className="inline-block wave">🖐🏻</span>
                     </W>{" "}
                     {BIO.split(" ").map((w, i) => (
                         <W key={i}>{w}&nbsp;</W>

@@ -83,20 +83,8 @@ function SkillCard({ skills, index }: { skills: Skill; index: number }) {
 
 export default function Skills() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{__html: `
-        .floating-icon {
-          transition: transform 0.3s ease;
-          cursor: pointer;
-        }
-
-        .skill-container:hover .floating-icon {
-          animation-play-state: paused !important;
-          transform: scale(1.08) !important;
-        }
-      `}} />
-      
-      <div className="py-16 px-4">
+    <>      
+      <div className="py-16 px-4 flex flex-col items-center justify-center min-h-screen gap-8">
         <h2 className="text-4xl font-bold text-center mb-12">My Skills</h2>
         <div className="flex flex-wrap justify-center gap-4 max-w-6xl px-10 py-4 mx-auto">
           {skills.map((skill, index) => (
