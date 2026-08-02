@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const EYEBROW = "who am i?";
 const BIO =
-  "I'm Monisha, a Software Developer passionate about building digital products. From web applications and mobile apps to AI/ML and Web3 projects, I love bringing ideas to life.";
+  "Hi, I'm Monisha, a Software Developer passionate about building digital products. From web applications and mobile apps to AI/ML and Web3 projects, I love bringing ideas to life.";
 
 function W({ children }: { children: ReactNode }) {
     return (
@@ -80,9 +80,6 @@ export default function AboutSection() {
 
             <div className="flex">
                 <span ref={textRef} className="text-6xl leading-[1.2] geistMono">
-                    <W>
-                        <span className="inline-block wave">🖐🏻</span>
-                    </W>{" "}
                     {BIO.split(" ").map((w, i) => (
                         <W key={i}>{w}&nbsp;</W>
                     ))}

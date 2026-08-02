@@ -3,6 +3,7 @@ import AboutSection from "@/pages/AboutSection";
 import HeroSection from "@/pages/HeroSection";
 import Skills from "@/pages/Skills";
 import SmoothScroll from "@/providers/SmoothScroll";
+import Scrollstripereveal from "@/component/Scrollstripereveal";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <HeroSection />
       <Divider />
       <AboutSection />
+      <Scrollstripereveal />
       <Skills />
     </SmoothScroll>
   );
