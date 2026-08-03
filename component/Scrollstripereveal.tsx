@@ -35,8 +35,6 @@ function Stripe({
 
 export default function ScrollStripeReveal() {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // scrollYProgress goes 0 -> 1 as the user scrolls through this section
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],

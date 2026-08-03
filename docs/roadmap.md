@@ -1,6 +1,6 @@
 # Portfolio Roadmap
 
-> Goal: Build a premium portfolio focused on storytelling, performance, and smooth user experience.
+> Goal: Continue refining the portfolio into a polished, premium experience with stronger content, richer interactions, and a more complete section set.
 
 ---
 
@@ -12,20 +12,17 @@
 - [x] Create folder structure
 - [x] Configure fonts
 - [x] Configure metadata
-- [ ] Create content layer
+- [ ] Create a dedicated content layer
 
 ---
 
 # Phase 2 — Design System
 
-- [ ] Define typography
-- [ ] Define color palette
-- [ ] Define spacing system
-- [ ] Define shadows
-- [ ] Define border radius
-- [ ] Create reusable Button
-- [ ] Create reusable Card
-- [ ] Create reusable Container
+- [x] Define typography
+- [x] Define core color palette
+- [x] Define spacing approach through Tailwind utilities
+- [ ] Formalize reusable Button/Card/Container components
+- [ ] Add a more complete design token system
 
 ---
 
@@ -33,14 +30,14 @@
 
 ## Navigation
 
-- [ ] Navbar
+- [x] Header / top navigation
 - [ ] Mobile menu
 
 ## Hero
 
-- [ ] Intro
-- [ ] CTA
-- [ ] Hero animation
+- [x] Intro
+- [x] Typing-style animation
+- [x] Scroll cue
 
 ## Featured Projects
 
@@ -50,11 +47,11 @@
 
 ## About
 
-- [ ] Personal story
+- [x] Personal story section
 
 ## Skills
 
-- [ ] Skills grid
+- [x] Skills showcase
 
 ## Experience
 
@@ -76,20 +73,20 @@
 
 # Phase 4 — Motion
 
-- [ ] Smooth scrolling
+- [x] Smooth scrolling
 - [ ] Page transitions
 - [ ] Cursor effects
-- [ ] Scroll animations
-- [ ] Hover interactions
+- [x] Scroll-based reveal animations
+- [x] Hover interactions
 
 ---
 
 # Phase 5 — Responsive Design
 
-- [ ] Mobile
-- [ ] Tablet
-- [ ] Desktop
-- [ ] Ultra-wide
+- [x] Mobile-friendly layout foundation
+- [x] Tablet-friendly layout foundation
+- [x] Desktop layout
+- [ ] Ultra-wide refinement
 
 ---
 
@@ -107,7 +104,7 @@
 - [ ] GitHub Actions
 - [ ] Husky
 - [ ] lint-staged
-- [ ] Documentation
+- [ ] Documentation cleanup
 - [ ] Final code cleanup
 
 ---
