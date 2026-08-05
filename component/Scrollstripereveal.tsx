@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, MotionValue } from "framer-motion";
 import { Code2, Palette, Cpu, ArrowUpRight, type LucideIcon } from "lucide-react";
 
 const STRIPE_COUNT = 5;
@@ -67,14 +67,14 @@ function Stripe({
   const start = order * STRIPE_STAGGER;
   const end = Math.min(start + STRIPE_DURATION, 1);
 
-  const y = useTransform(scrollYProgress, [start, end], ["0%", "-100%"]);
+  const y = useTransform(scrollYProgress, [start, end], ["0%", "-102%"]);
 
   return (
     <div
       className="absolute left-0 w-full overflow-hidden z-20"
       style={{
-        top: `${(visualIndex * 100) / STRIPE_COUNT}%`,
-        height: `${100 / STRIPE_COUNT}%`,
+        top: `calc(${(visualIndex * 100) / STRIPE_COUNT}% - 2px)`,
+        height: `calc(${100 / STRIPE_COUNT}% + 4px)`,
       }}
     >
       <motion.div className="h-full w-full bg-black" style={{ y }} />
@@ -97,29 +97,29 @@ function Card({
   description,
   icon: Icon,
   accent,
-  scrollYProgress,
-}: CardData & { index: number; scrollYProgress: MotionValue<number> }) {
+  progress,
+}: CardData & { index: number; progress: MotionValue<number> }) {
   const start = CARD_START + index * CARD_STAGGER;
   const end = Math.min(start + CARD_DURATION, 1);
 
-  const rotateX = useTransform(scrollYProgress, [start, end], [70, 0]);
-  const y = useTransform(scrollYProgress, [start, end], [110, 0]);
-  const scale = useTransform(scrollYProgress, [start, end], [0.8, 1]);
-  const opacity = useTransform(scrollYProgress, [start, end], [0, 1]);
+  const rotateX = useTransform(progress, [start, end], [70, 0]);
+  const y = useTransform(progress, [start, end], [110, 0]);
+  const scale = useTransform(progress, [start, end], [0.8, 1]);
+  const opacity = useTransform(progress, [start, end], [0, 1]);
 
   return (
     <motion.div
       style={{ rotateX, y, scale, opacity, transformPerspective: 1400 }}
       whileHover={{ y: -8 }}
-      className="group relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-b from-white to-neutral-50 shadow-xl"
+      className="group relative mx-auto aspect-3/4 w-full max-w-xs overflow-hidden rounded-3xl border border-neutral-200 bg-linear-to-b from-white to-neutral-50 shadow-xl"
     >
-      <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${accent}`} />
+      <div className={`absolute inset-x-0 top-0 h-1.5 bg-linear-to-r ${accent}`} />
       <Icon
         className="pointer-events-none absolute -bottom-6 -right-6 h-40 w-40 rotate-12 text-neutral-100"
         strokeWidth={1}
       />
       <div className="relative z-10 flex h-full flex-col p-7">
-        <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${accent} shadow-lg`}>
+        <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br ${accent} shadow-lg`}>
           <Icon className="h-7 w-7 text-white" strokeWidth={1.75} />
         </div>
         <h3 className="mt-6 text-xl font-semibold text-neutral-900">{title}</h3>
@@ -134,29 +134,53 @@ function Card({
 }
 
 function LightContent({
-  scrollYProgress,
+  progress,
   sectionTitle,
   cards,
 }: {
-  scrollYProgress: MotionValue<number>;
+  progress: MotionValue<number>;
   sectionTitle: string;
   cards: CardData[];
 }) {
-  const headingY = useTransform(scrollYProgress, [HEADING_START, HEADING_END], [60, 0]);
-  const headingOpacity = useTransform(scrollYProgress, [HEADING_START, HEADING_END], [0, 1]);
+  const headingY = useTransform(
+    progress,
+    [HEADING_START, HEADING_END],
+    [60, 0]
+  );
+
+  const headingOpacity = useTransform(
+    progress,
+    [HEADING_START, HEADING_END],
+    [0, 1]
+  );
 
   return (
     <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-10 px-6 md:gap-14">
       <motion.h2
-        style={{ y: headingY, opacity: headingOpacity }}
+        style={{
+          y: headingY,
+          opacity: headingOpacity,
+          willChange: "transform, opacity",
+        }}
         className="text-3xl font-semibold text-neutral-900 md:text-5xl"
       >
         {sectionTitle}
       </motion.h2>
 
-      <div className="grid w-full max-w-5xl grid-cols-1 gap-8 sm:grid-cols-3" style={{ perspective: 1400 }}>
+      <div
+        className="grid w-full max-w-5xl grid-cols-1 gap-8 sm:grid-cols-3"
+        style={{
+          perspective: 1400,
+          transformStyle: "preserve-3d",
+        }}
+      >
         {cards.map((card, i) => (
-          <Card key={card.title} index={i} scrollYProgress={scrollYProgress} {...card} />
+          <Card
+            key={card.title}
+            index={i}
+            progress={progress}
+            {...card}
+          />
         ))}
       </div>
     </div>
@@ -210,9 +234,10 @@ export default function ScrollStripeReveal({
   return (
     <div ref={containerRef} className="relative h-[450vh]">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
+      
         <div className="absolute inset-0 z-0 bg-neutral-100" />
-
-        <LightContent scrollYProgress={scrollYProgress} sectionTitle={sectionTitle} cards={cards} />
+ 
+        <LightContent progress={scrollYProgress} sectionTitle={sectionTitle} cards={cards} />
 
         {Array.from({ length: STRIPE_COUNT }).map((_, i) => (
           <Stripe key={i} visualIndex={i} scrollYProgress={scrollYProgress} />
