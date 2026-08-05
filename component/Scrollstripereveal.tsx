@@ -102,10 +102,29 @@ function Card({
   const start = CARD_START + index * CARD_STAGGER;
   const end = Math.min(start + CARD_DURATION, 1);
 
-  const rotateX = useTransform(progress, [start, end], [70, 0]);
-  const y = useTransform(progress, [start, end], [110, 0]);
-  const scale = useTransform(progress, [start, end], [0.8, 1]);
-  const opacity = useTransform(progress, [start, end], [0, 1]);
+  const rotateX = useTransform(
+  progress,
+  [start, end, 1],
+  [70, 0, 0]
+);
+
+const y = useTransform(
+  progress,
+  [start, end, 1],
+  [110, 0, 0]
+);
+
+const scale = useTransform(
+  progress,
+  [start, end, 1],
+  [0.8, 1, 1]
+);
+
+const opacity = useTransform(
+  progress,
+  [start, end, 1],
+  [0, 1, 1]
+);
 
   return (
     <motion.div
@@ -144,14 +163,14 @@ function LightContent({
 }) {
   const headingY = useTransform(
     progress,
-    [HEADING_START, HEADING_END],
-    [60, 0]
+    [HEADING_START, HEADING_END, 1],
+    [60, 0, 0]
   );
 
   const headingOpacity = useTransform(
     progress,
-    [HEADING_START, HEADING_END],
-    [0, 1]
+    [HEADING_START, HEADING_END, 1],
+    [0, 1, 1]
   );
 
   return (

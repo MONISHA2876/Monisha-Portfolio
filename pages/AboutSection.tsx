@@ -79,7 +79,7 @@ export default function AboutSection() {
             </p>
 
             <div className="flex">
-                <span ref={textRef} className="text-6xl leading-[1.2] geistMono">
+                <span ref={textRef} className="text-6xl font-normal leading-[1.2] geistMono">
                     {BIO.split(" ").map((w, i) => (
                         <W key={i}>{w}&nbsp;</W>
                     ))}
