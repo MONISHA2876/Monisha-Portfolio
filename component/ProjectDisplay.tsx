@@ -237,7 +237,7 @@ export default function SelectedWork() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[600vh] w-full bg-neutral-100 text-neutral-900 md:h-[600vh]"
+      className="relative h-[300vh] w-full bg-neutral-100 text-neutral-900 md:h-[300vh]"
     >
       {/* Sticky viewport */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">

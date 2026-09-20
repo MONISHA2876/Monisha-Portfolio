@@ -4,6 +4,7 @@ import HeroSection from "@/pages/HeroSection";
 import SmoothScroll from "@/providers/SmoothScroll";
 import Scrollstripereveal from "@/component/Scrollstripereveal";
 import SelectedWork from "@/component/ProjectDisplay";
+import CollaborationSection from "@/component/Divider2";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <div className="pt-40 bg-neutral-100">
         <SelectedWork />
       </div>
-      
+      <CollaborationSection />
     </SmoothScroll>
   );
 }
