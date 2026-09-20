@@ -50,16 +50,18 @@ const projects: Project[] = [
 
 function ViewProjectsButton() {
   return (
-    <button
-      type="button"
-      className="group flex items-center gap-3 border-b border-neutral-400 pb-2 text-[11px] uppercase tracking-[0.16em] text-neutral-900 transition-colors duration-300 hover:border-neutral-900"
-    >
-      <span>View All Projects</span>
+    <a href="https://github.com/MONISHA2876?tab=repositories" target="_blank" rel="noopener noreferrer">
+      <button
+        type="button"
+        className="group flex items-center gap-3 border-b border-neutral-400 pb-2 text-[11px] uppercase tracking-[0.16em] text-neutral-900 transition-colors duration-300 hover:border-neutral-900"
+      >
+        <span>View All Projects</span>
 
       <span className="transition-transform duration-300 group-hover:translate-x-1">
         →
       </span>
     </button>
+    </a>
   );
 }
 
