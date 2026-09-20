@@ -99,3 +99,10 @@ body {
   animation-play-state: paused !important;
   transform: scale(1.08) !important;
 }
+
+.scroll-driven-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  will-change: transform;
+}   
