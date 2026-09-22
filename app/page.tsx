@@ -6,6 +6,7 @@ import Scrollstripereveal from "@/component/Scrollstripereveal";
 import SelectedWork from "@/component/ProjectDisplay";
 import CollaborationSection from "@/component/Divider2";
 import Contact from "@/pages/Contact";
+import Footer from "@/component/Footer";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       </div>
       <CollaborationSection />
       <Contact />
+      <Footer />
     </SmoothScroll>
   );
 }
