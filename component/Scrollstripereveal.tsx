@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useMotionValue, MotionValue } from "framer-motion";
-import { Code2, Palette, Cpu, ArrowUpRight, type LucideIcon } from "lucide-react";
+import { Code2, Blocks, Cpu, ArrowUpRight, type LucideIcon, Plus } from "lucide-react";
 
 const STRIPE_COUNT = 5;
 const STRIPE_DURATION = 0.28;
@@ -88,6 +88,8 @@ type CardData = {
   description: string;
   icon: LucideIcon;
   accent: string;
+  tags?: string[];     
+  linkText: string|"Explore Project";   
 };
 
 function Card({
@@ -97,57 +99,93 @@ function Card({
   description,
   icon: Icon,
   accent,
+  tags,       
+  linkText,  
   progress,
 }: CardData & { index: number; progress: MotionValue<number> }) {
   const start = CARD_START + index * CARD_STAGGER;
   const end = Math.min(start + CARD_DURATION, 1);
 
   const rotateX = useTransform(
-  progress,
-  [start, end, 1],
-  [70, 0, 0]
-);
+    progress,
+    [start, end, 1],
+    [70, 0, 0]
+  );
 
-const y = useTransform(
-  progress,
-  [start, end, 1],
-  [110, 0, 0]
-);
+  const y = useTransform(
+    progress,
+    [start, end, 1],
+    [110, 0, 0]
+  );
 
-const scale = useTransform(
-  progress,
-  [start, end, 1],
-  [0.8, 1, 1]
-);
+  const scale = useTransform(
+    progress,
+    [start, end, 1],
+    [0.8, 1, 1]
+  );
 
-const opacity = useTransform(
-  progress,
-  [start, end, 1],
-  [0, 1, 1]
-);
+  const opacity = useTransform(
+    progress,
+    [start, end, 1],
+    [0, 1, 1]
+  );
 
   return (
     <motion.div
       style={{ rotateX, y, scale, opacity, transformPerspective: 1400 }}
       whileHover={{ y: -8 }}
-      className="group relative mx-auto aspect-3/4 w-full max-w-xs overflow-hidden rounded-3xl border border-neutral-200 bg-linear-to-b from-white to-neutral-50 shadow-xl"
+      className="group relative mx-auto w-full max-w-sm min-h-[50vh] overflow-hidden rounded-[28px] border border-neutral-200/80 bg-white p-6 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.06)]"
     >
-      <div className={`absolute inset-x-0 top-0 h-1.5 bg-linear-to-r ${accent}`} />
-      <Icon
-        className="pointer-events-none absolute -bottom-6 -right-6 h-40 w-40 rotate-12 text-neutral-100"
-        strokeWidth={1}
-      />
-      <div className="relative z-10 flex h-full flex-col p-7">
-        <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br ${accent} shadow-lg`}>
-          <Icon className="h-7 w-7 text-white" strokeWidth={1.75} />
-        </div>
-        <h3 className="mt-6 text-xl font-semibold text-neutral-900">{title}</h3>
-        <p className="text-sm font-medium text-neutral-400">{subtitle}</p>
-        <p className="mt-4 text-sm leading-relaxed text-neutral-500">{description}</p>
-        <div className="mt-auto flex items-center gap-1 text-sm font-medium text-neutral-900 opacity-0 transition-opacity group-hover:opacity-100">
-          Explore <ArrowUpRight className="h-4 w-4" />
+      {/* top row: index number + icon chip */}
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-medium tracking-wide text-neutral-300">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <div className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-500 shadow-sm">
+          <Icon className="h-4 w-4" strokeWidth={1.75} />
         </div>
       </div>
+
+      {/* title + subtitle */}
+      <h3 className="mt-5 text-2xl font-normal leading-tight tracking-tight text-neutral-700">
+        {title}
+      </h3>
+      <p className="mt-1 text-[11px] font-normal tracking-[0.12em] text-neutral-400 uppercase">
+        {subtitle}
+      </p>
+
+      {/* description */}
+      <p className="mt-3 max-w-[85%] text-sm leading-tight text-neutral-500">
+        {description}
+      </p>
+
+      {/* decorative icon watermark (bottom-right, replaces 3D render) */}
+      <Icon
+        className="pointer-events-none absolute -bottom-8 -right-8 h-36 w-36 rotate-[8deg] text-neutral-100"
+        strokeWidth={1}
+      />
+
+      {/* accent gradient blob behind icon, subtle */}
+      <div
+        className={`pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-linear-to-br ${accent} opacity-[0.06] blur-2xl`}
+      />
+
+      {/* tags row */}
+      {tags && (
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full bg-neutral-100 px-3 py-1 text-[11px] font-medium text-neutral-600"
+            >
+              {tag}
+            </span>
+          ))}
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-100 text-neutral-500">
+            <Plus className="h-3 w-3" strokeWidth={2} />
+          </span>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -175,19 +213,39 @@ function LightContent({
 
   return (
     <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-10 px-6 md:gap-14">
-      <motion.h2
-        style={{
-          y: headingY,
-          opacity: headingOpacity,
-          willChange: "transform, opacity",
-        }}
-        className="text-3xl font-semibold text-neutral-900 md:text-5xl"
-      >
-        {sectionTitle}
-      </motion.h2>
+      <div className="flex flex-col items-center gap-3 text-center">
+        <motion.h2
+          style={{
+            y: headingY,
+            opacity: headingOpacity,
+            willChange: "transform, opacity",
+          }}
+          className="text-xs font-semibold tracking-[0.25em] text-neutral-400">
+          TURNING IDEAS INTO REALITY
+        </motion.h2>
+        <motion.h2
+          style={{
+            y: headingY,
+            opacity: headingOpacity,
+            willChange: "transform, opacity",
+          }}
+          className="text-3xl font-normal leading-tight tracking-tight text-neutral-700 md:text-6xl"
+        >
+          What I <span className="font-serif italic font-normal">Build</span>
+        </motion.h2>
+        <motion.h2
+          style={{
+            y: headingY,
+            opacity: headingOpacity,
+            willChange: "transform, opacity",
+          }}
+           className="max-w-md text-sm text-neutral-500 md:text-base">
+          A mix of code, design and curiosity — building products that are useful, beautiful, and a little ahead of time.
+        </motion.h2>
+      </div>
 
       <div
-        className="grid w-full max-w-5xl grid-cols-1 gap-8 sm:grid-cols-3"
+        className="grid w-full max-w-5xl grid-cols-1 gap-6 sm:grid-cols-3"
         style={{
           perspective: 1400,
           transformStyle: "preserve-3d",
@@ -203,7 +261,7 @@ function LightContent({
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 interface ScrollStripeRevealProps {
@@ -213,29 +271,35 @@ interface ScrollStripeRevealProps {
 
 export default function ScrollStripeReveal({
   sectionTitle = "What I Build",
-  cards = [
+ cards = [
     {
       title: "Web & App",
-      subtitle: "Frontend & Backend",
-      description: "Responsive, performant products built end-to-end with modern frameworks.",
+      subtitle: "Full-Stack Development",
+      description: "Responsive, performant products built end-to-end with modern technologies.",
       icon: Code2,
       accent: "from-blue-500 to-indigo-600",
+      tags: ["React", "Next.js", "Node.js", "React Native"],
+      linkText: "Explore my work",
     },
     {
-      title: "Beautiful & Meaningful",
-      subtitle: "UI/UX",
-      description: "Interfaces crafted with intent — clean, accessible, and delightful to use.",
-      icon: Palette,
+      title: "Web3 & Blockchain",
+      subtitle: "Decentralized Apps",
+      description: "Building smart contracts and DApps on the blockchain — secure, transparent, and trustless.",
+      icon: Blocks,
       accent: "from-fuchsia-500 to-purple-600",
+      tags: ["Solidity", "Ethereum", "Web3.js"],
+      linkText: "Explore Web3 projects",
     },
     {
       title: "AI Experience",
-      subtitle: "& Web3 DApp",
+      subtitle: "Intelligent Solutions",
       description: "Exploring intelligent systems and decentralized applications at the edge.",
       icon: Cpu,
       accent: "from-emerald-500 to-teal-600",
+      tags: ["AI/ML", "LLMs"],
+      linkText: "Explore AI projects",
     },
-  ],
+  ]
 }: ScrollStripeRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 

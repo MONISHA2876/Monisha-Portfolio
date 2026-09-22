@@ -48,14 +48,14 @@ const projects: Project[] = [
   },
 ];
 
-function ViewProjectsButton() {
+export function ViewProjectsButton( {text}: {text: string}) {
   return (
     <a href="https://github.com/MONISHA2876?tab=repositories" target="_blank" rel="noopener noreferrer">
       <button
         type="button"
         className="group flex items-center gap-3 border-b border-neutral-400 pb-2 text-[11px] uppercase tracking-[0.16em] text-neutral-900 transition-colors duration-300 hover:border-neutral-900"
       >
-        <span>View All Projects</span>
+        <span>{text}</span>
 
       <span className="transition-transform duration-300 group-hover:translate-x-1">
         →
@@ -251,7 +251,7 @@ export default function SelectedWork() {
             <h3 className="text-3xl font-normal leading-tight tracking-tight text-neutral-700 md:text-6xl">
               Selected Work<br/>& explorations
             </h3>
-            <ViewProjectsButton />
+            <ViewProjectsButton text="View All Projects" />
           </div>
 
           <ProjectCard
@@ -278,7 +278,7 @@ export default function SelectedWork() {
             <h3 className="text-xl text-center font-normal leading-tight tracking-tight text-neutral-700 md:text-3xl mb-8">
               A collection of digital products,<br/> & explorations shaped by<br/>technology & curiosity.
             </h3>
-            <ViewProjectsButton />
+            <ViewProjectsButton text="View All Projects" />
           </div>
         </div>
       </div>
